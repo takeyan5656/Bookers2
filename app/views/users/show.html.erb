@@ -1,5 +1,5 @@
 <main>
-  <p id="notice"></p>
+  <p id="notice"><%= flash[:notice] %></p>
   <div class="container px-5 px-sm-0">
     <div class="row">
       <div class="col-md-3">
@@ -23,7 +23,7 @@
             <i class="fas fa-user-cog"></i>
           <% end %>
         </div>
-        <h2 class="mt-3">New Book</h2>
+        <h2 class="mt-3">New book</h2>
         <%= form_with model: Book.new do |f| %>
           <div class="form-group">
             <label for="book_title">Title</label>
@@ -53,7 +53,9 @@
             <% @books.each do |book| %>
               <tr>
                 <td>
-                  <%= image_tag @user.get_profile_image(80, 80) %>
+                  <%= link_to user_path(@user.id) do %>
+                    <%= image_tag @user.get_profile_image(80, 80) %>
+                  <% end %>
                 </td>
                 <td>
                   <%= link_to book_path(book.id) do %>
